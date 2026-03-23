@@ -1,0 +1,66 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Team Dashboard{% endblock %}
+{% block page_title %}Team Dashboard{% endblock %}
+
+{% block sidebar_nav %}
+<li><a href="{% url 'accounts:inhouse_dashboard' %}" class="sidebar__link">
+  <svg class="sidebar__link-icon" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+  <span class="sidebar__link-text">Dashboard</span>
+</a></li>
+<li><a href="#" class="sidebar__link">
+  <svg class="sidebar__link-icon" viewBox="0 0 18 18" fill="none"><path d="M3 4h12M3 9h8M3 14h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  <span class="sidebar__link-text">Assigned jobs</span>
+</a></li>
+<li><a href="#" class="sidebar__link">
+  <svg class="sidebar__link-icon" viewBox="0 0 18 18" fill="none"><path d="M9 2a7 7 0 100 14A7 7 0 009 2z" stroke="currentColor" stroke-width="1.3"/><path d="M9 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  <span class="sidebar__link-text">In progress</span>
+</a></li>
+<li><a href="#" class="sidebar__link">
+  <svg class="sidebar__link-icon" viewBox="0 0 18 18" fill="none"><path d="M2 14l4-4 3 3 5-6 2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="sidebar__link-text">Completed</span>
+</a></li>
+<li><a href="{% url 'accounts:profile' %}" class="sidebar__link">
+  <svg class="sidebar__link-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M3 16c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  <span class="sidebar__link-text">Profile</span>
+</a></li>
+{% endblock %}
+
+{% block page_content %}
+<div class="dashboard-welcome">
+  <h2 class="dashboard-welcome__title">Hey {{ request.user.full_name|truncatewords:1 }}, here's your workload</h2>
+  <p class="dashboard-welcome__sub">Jobs assigned to you by the admin team.</p>
+</div>
+
+<div class="stats-grid">
+  {% for stat in stats %}
+  <div class="stat-card">
+    <div class="stat-card__icon" style="background:var(--role-inhouse-lt);color:var(--role-inhouse);">
+      {% if stat.icon == 'clipboard' %}
+      <svg viewBox="0 0 20 20" fill="none"><path d="M9 2a1 1 0 00-1 1v1H6a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2h-2V3a1 1 0 00-1-1H9zM8 8h4M8 11h4M8 14h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      {% elif stat.icon == 'activity' %}
+      <svg viewBox="0 0 20 20" fill="none"><path d="M2 10h4l2-6 4 12 2-6h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {% else %}
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {% endif %}
+    </div>
+    <div class="stat-card__body">
+      <div class="stat-card__value">{{ stat.value }}</div>
+      <div class="stat-card__label">{{ stat.label }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <div class="card__header">
+    <div class="card__title">Assigned jobs</div>
+  </div>
+  <div class="empty-state">
+    <div class="empty-state__icon" style="background:var(--role-inhouse-lt);color:var(--role-inhouse);">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 7l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="empty-state__title">No jobs assigned yet</div>
+    <div class="empty-state__desc">The admin team will assign jobs to you here.</div>
+  </div>
+</div>
+{% endblock %}

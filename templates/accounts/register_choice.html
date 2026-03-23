@@ -1,0 +1,28 @@
+{% extends "auth_base.html" %}
+{% block title %}Create account{% endblock %}
+
+{% block auth_content %}
+<div class="auth-form">
+  <div class="auth-form__header">
+    <h1 class="auth-form__title">Create an account</h1>
+    <p class="auth-form__subtitle">How are you joining EngiConnect?</p>
+  </div>
+
+  <div class="register-choice-grid">
+    <a href="{% url 'accounts:register_client' %}" class="register-choice-card register-choice-card--client">
+      <div class="register-choice-card__icon">🏗️</div>
+      <div class="register-choice-card__title">I need engineering work done</div>
+      <div class="register-choice-card__desc">Post jobs and get expert help</div>
+    </a>
+    <a href="{% url 'accounts:register_engineer' %}" class="register-choice-card register-choice-card--engineer">
+      <div class="register-choice-card__icon">⚙️</div>
+      <div class="register-choice-card__title">I'm an engineer offering services</div>
+      <div class="register-choice-card__desc">Join the platform and take contracts</div>
+    </a>
+  </div>
+
+  <div class="auth-form__footer mt-24">
+    Already have an account? <a href="{% url 'accounts:login' %}">Sign in</a>
+  </div>
+</div>
+{% endblock %}

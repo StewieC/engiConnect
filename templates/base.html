@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EngiConnect{% endblock %} — Engineering Services</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  {% if messages %}
+  <div class="toast-container" id="toastContainer">
+    {% for message in messages %}
+    <div class="toast toast--{{ message.tags }}">
+      <span class="toast__icon">
+        {% if 'success' in message.tags %}✓
+        {% elif 'error' in message.tags or 'danger' in message.tags %}✕
+        {% elif 'warning' in message.tags %}⚠
+        {% else %}i{% endif %}
+      </span>
+      <span class="toast__text">{{ message }}</span>
+      <button class="toast__close" onclick="this.parentElement.remove()">✕</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% block content %}
+  {% endblock %}
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}
+  {% endblock %}
+</body>
+</html>
