@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
-    'accounts',
+    'core',
+    'tasks',
 ]
 
 MIDDLEWARE = [
@@ -82,12 +83,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts.User'
 
-# Auth redirects
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/dashboard/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+# # Auth redirects
+# LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = '/accounts/dashboard/'
+# LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
