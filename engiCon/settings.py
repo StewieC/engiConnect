@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'core',
     'tasks',
+    'proposals',
 ]
 
 MIDDLEWARE = [
@@ -33,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'engiconnect.urls'
+ROOT_URLCONF = 'engiCon.urls'
 
 TEMPLATES = [
     {
@@ -51,7 +52,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'engiconnect.wsgi.application'
+WSGI_APPLICATION = 'engiCon.wsgi.application'
 
 DATABASES = {
     'default': {

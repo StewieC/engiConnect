@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-semibold mb-6">Proposals for "{{ task.title }}"</h1>
+
+<div class="space-y-6">
+    {% for proposal in proposals %}
+    <div class="bg-white border rounded-2xl p-6">
+        <div class="flex justify-between">
+            <h3 class="font-semibold">{{ proposal.bidder_name }}</h3>
+            <span class="text-emerald-600 font-medium">KES {{ proposal.proposed_price }}</span>
+        </div>
+        <p class="text-sm text-gray-500">{{ proposal.delivery_days }} days delivery</p>
+        <p class="mt-4 text-gray-700">{{ proposal.cover_letter|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p class="text-gray-500">No proposals yet.</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'tasks:task_detail' task.id %}" class="mt-8 inline-block text-blue-600 hover:underline">
+    ← Back to Task Details
+</a>
+{% endblock %}

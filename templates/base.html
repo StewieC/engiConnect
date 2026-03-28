@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
     <title>EngiConnect - Engineering Tasks</title>
     
     <!-- Tailwind CDN - clean professional look -->
@@ -25,8 +26,8 @@
             <a href="/" class="text-3xl font-bold text-blue-600 tracking-tight">EngiConnect</a>
             
             <div class="flex items-center gap-8 text-sm font-medium">
-                <a href="{% url 'task_list' %}" class="hover:text-blue-600 transition">Browse Tasks</a>
-                <a href="{% url 'task_create' %}" class="hover:text-blue-600 transition">Post a Task</a>
+                <a href="{% url 'tasks:task_list' %}" class="hover:text-blue-600 transition">Browse Tasks</a>
+                <a href="{% url 'tasks:task_create' %}" class="hover:text-blue-600 transition">Post a Task</a>
                 <a href="#" class="hover:text-blue-600 transition">How it Works</a>
             </div>
 

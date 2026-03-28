@@ -11,7 +11,7 @@ def task_create(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('task_list')
+            return redirect('tasks:task_list')
     else:
         form = TaskForm()
     return render(request, 'tasks/task_create.html', {'form': form})

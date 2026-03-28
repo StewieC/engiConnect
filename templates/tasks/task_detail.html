@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Main Content -->
+    <div class="lg:col-span-8">
+        <h1 class="text-3xl font-semibold">{{ task.title }}</h1>
+        <div class="flex gap-3 mt-4">
+            <span class="px-4 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
+                {{ task.get_category_display }}
+            </span>
+            <span class="px-4 py-1 bg-green-100 text-green-700 text-sm rounded-full">
+                {{ task.get_status_display }}
+            </span>
+        </div>
+
+        <div class="mt-10">
+            <h2 class="font-medium text-lg mb-3">Description</h2>
+            <p class="text-gray-700 leading-relaxed">{{ task.description }}</p>
+        </div>
+
+        {% if task.attachments_note %}
+        <div class="mt-8 p-5 bg-amber-50 border border-amber-200 rounded-2xl">
+            <p class="font-medium">Attachments Note:</p>
+            <p class="text-gray-700">{{ task.attachments_note }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Sidebar - Action Box -->
+    <div class="lg:col-span-4">
+        <div class="bg-white border rounded-3xl p-6 sticky top-6">
+            <h3 class="font-semibold mb-4">Task Summary</h3>
+            <div class="space-y-4">
+                <div>
+                    <p class="text-sm text-gray-500">Budget</p>
+                    <p class="text-3xl font-bold">KES {{ task.budget }}</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">Deadline</p>
+                    <p class="text-3xl font-bold">{{ task.deadline }}</p>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <a href="{% url 'proposals:submit_proposal' task.id %}" 
+                   class="block text-center bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-2xl font-medium mb-3">
+                    Submit Proposal
+                </a>
+                <a href="{% url 'proposals:task_proposals' task.id %}" 
+                   class="block text-center text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 py-3 rounded-2xl font-medium">
+                    View All Proposals ({{ task.proposals.count }})
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
